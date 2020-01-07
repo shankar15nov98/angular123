@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div *ngIf="weather; else waiting">
+        <div class="col-sm-12 text-center">
+            <div class="input-group mt-5">
+                <input class="form-control" type="text" #userInput placeholder="enter city name">
+                <div class="input-group-append" >
+                    <button class="input-group-text btn btn-outline-primary" (click)="getCity(userInput.value)">search</button>
+
+                
+
+                </div>
+            </div>
+            <h3>{{weather.name}},{{weather.sys.country}}</h3>
+        </div>
+        <div class="col-sm-12" >
+            <span class="temp">
+                <img src="assets/{{weather.weather[0].icon}}.png">{{weather.main.temp | number: '1.0-0'}} &#176;F
+            </span>
+<p class="text-uppercase font_italic font-weight_bold">
+    {{weather.weather[0].description}}
+</p>           
+
+        </div>
+        <table class="table table-light table-striped table-bordered table-sm">
+            <tbody>
+                <tr>
+                    <td>humidity</td>
+                    <td>{{weather.main.humidity}}%</td>
+                </tr>
+                <tr>
+                    <td>pressure</td>
+                    <td>{{weather.main.pressure}}%</td>
+                </tr>
+            </tbody>
+        </table>
+        <agm-map [latitude]="lat" [longitude]="lon">
+        <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+    </agm-map>
+</div>
+
+    </div>
+</div>
